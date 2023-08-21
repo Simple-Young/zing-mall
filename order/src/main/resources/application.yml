@@ -1,0 +1,72 @@
+server:
+  port: 15000
+  servlet:
+    context-path: /order
+
+spring:
+  application:
+    name: order
+
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.119.129:3306/gulimall_oms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 50000
+
+  redis:
+    host: 192.168.119.129
+    password: nopwd
+  session:
+    store-type: redis
+
+  cloud:
+    nacos:
+      discovery: #服务注册和发现中心
+        server-addr: 192.168.119.1:8848
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+
+  thymeleaf:
+    cache: false
+
+
+
+#  rabbitmq:
+#    host: #
+#    username: niceseason
+#    password: mo19960729
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+
+#  zipkin:
+#    base-url: http://localhost:9411
+#    sender:
+#      type: web
+#    discovery-client-enabled: false
+#  #采样取值介于 0到1之间，1则表示全部收集
+#  sleuth:
+#    sampler:
+#      probability: 1
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+# 自定义线程池参数
+gulimall:
+  thread:
+    corePoolSize: 10
+    maxPoolSize: 20
+    keepAliveTime: 300
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
